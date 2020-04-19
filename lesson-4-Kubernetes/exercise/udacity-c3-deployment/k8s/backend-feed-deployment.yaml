@@ -2,17 +2,19 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: backend-feed
+    service: backend-feed
+    version: v2
   name: backend-feed
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: backend-feed
+        service: backend-feed
+        version: v2
     spec:
       containers:
-      - image: scheele/udacity-restapi-feed
+      - image: sunilkrishnatry/udacity-c3-restapi-feed
         name: backend-feed
         imagePullPolicy: Always  
         resources:

@@ -30,12 +30,15 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+    console.log('Request for Feed');
     const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
+    console.log(items);
     items.rows.map((item) => {
             if(item.url) {
                 item.url = AWS.getGetSignedUrl(item.url);
             }
     });
+    console.log(items);
     res.send(items);
 });
 
